@@ -1,13 +1,16 @@
 #!/usr/bin/env python3
 
-from aiohttp import web
+from japronto import Application
 
 
-async def handle(request):
-    a, b = request.rel_url.query['a'], request.rel_url.query['b']
-    return web.Response(text=str(float(a) / float(b)))
+def handle(request):
+    try:
+        a, b = request.query['a'], request.query['b']
+    except:
+        return request.Response(text=str(''))
+    return request.Response(text=str(float(a)/float(b))) if a and b else request.Response(text=str(''))
 
-app = web.Application()
-app.add_routes([web.get('/', handle)])
 
-web.run_app(app, port=9099)
+app = Application()
+app.router.add_route('/', handle)
+app.run(debug=False, port=9099)
