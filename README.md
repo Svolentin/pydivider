@@ -23,7 +23,7 @@ Uses `aiohttp` as webserver
 ### Test it:
 `watch -n .1 'curl -s http://localhost:9099/?a=$RANDOM\&b=$RANDOM'`
 
-### Bencmark
+### Benchmark
 `wrk -t12 -c100 -d30s http://127.0.0.1:9099/?a=$RANDOM\&b=$RANDOM`
 ```
 Running 30s test @ http://127.0.0.1:9099/?a=19515&b=18458
